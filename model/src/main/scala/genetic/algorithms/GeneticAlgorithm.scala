@@ -20,11 +20,15 @@ object GeneticAlgorithm {
 
   private def createOffspring[Chromosome](population: Population[Chromosome],
                                           params: GeneticAlgorithmParameters): Population[Chromosome] = {
-    // todo: make select, crossover and mutate work as implicit classes and implicit strategy vals
+    import PopulationExtensions.PopulationExtensions
+
     implicit val selectionStrategy = params.selectionAlgorithm
+    implicit val crossoverStratgy = params.crossoverAlrorithm
+    implicit val mutationStrategy = params.mutationAlgorithm
+
     population
-      //.select(params.selectionRate)
-      //.crossover(selectionRate)
-      //.mutate(mutationRate)
+      .select(params.selectionRate)
+      .crossover(params.selectionRate)
+      .mutate(params.mutationRate)
   }
 }

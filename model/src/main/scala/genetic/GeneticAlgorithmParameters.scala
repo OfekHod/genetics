@@ -7,8 +7,8 @@ import genetic.algorithms.selection.Selection
 trait GeneticAlgorithmParameters {
   def populationSize: Int
   def selectionAlgorithm: Selection
-  def mutationAlgorithm: Mutation
   def crossoverAlrorithm: Crossover
+  def mutationAlgorithm: Mutation
   def selectionRate: Double
   def mutationRate: Double
 }
