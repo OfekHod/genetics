@@ -12,13 +12,13 @@ case class Population[Chromosome](genes: Seq[Gene[Chromosome]], size: Int) {
 }
 
 object Population {
-  def random[Chromosome](populationSize: Int): Population[Chromosome] = {
-    val genes = Array.fill(populationSize) {randomGene[Chromosome]()}
-    Population[Chromosome](genes, populationSize)
+  def random[Chromosome](size: Int): Population[Chromosome] = {
+    val genes = Array.fill(size) {randomGene[Chromosome]()}
+    Population[Chromosome](genes, size)
   }
-  def duplicatedGenePopulation[Chromosome](populationSize: Int, gene: Gene[Chromosome]): Population[Chromosome] = {
-    val genes = Array.fill(populationSize) {gene}
-    Population[Chromosome](genes, populationSize)
+  def duplicatedGenePopulation[Chromosome](size: Int, gene: Gene[Chromosome]): Population[Chromosome] = {
+    val genes = Array.fill(size) {gene}
+    Population[Chromosome](genes, size)
   }
 
   // todo: create static random functino in gene somehow

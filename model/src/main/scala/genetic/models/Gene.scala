@@ -1,9 +1,10 @@
 package genetic.models
 
-import genetic.models.Aliases.Fitness
+import genetic.models.Aliases.{Fitness, FitnessFunction}
 
-trait Gene[Chromosome] {
-  def chromosome: Seq[Chromosome]
-  def fitness: Fitness
-  def random(chromosomeSize: Int): Gene[Chromosome]
+abstract class Gene[Chromosome](val chromosome: Seq[Chromosome],
+                                val fitnessFunction: FitnessFunction[Chromosome]) {
+  lazy val fitness = fitnessFunction(chromosome)
+
+  def random(chromosomeSize: Int, fitnessFunction: FitnessFunction[Chromosome]): Gene[Chromosome]
 }
