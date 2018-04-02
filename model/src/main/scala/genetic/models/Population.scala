@@ -2,27 +2,22 @@ package genetic.models
 
 import genetic.models.Aliases.Fitness
 
-case class Population[Chromosome](genes: Seq[Gene[Chromosome]], size: Int) {
-  def this(genes: Seq[Gene[Chromosome]]) {
-    this(genes, genes.length)
+case class Population[Chromosome](creatures: Seq[Creature[Chromosome]], size: Int) {
+  def this(creatures: Seq[Creature[Chromosome]]) {
+    this(creatures, creatures.length)
   }
-  lazy val chromosomeSize: Int = genes.head.chromosome.length
-  lazy val averageFitness: Fitness = genes.map(_.fitness).sum / size
-  lazy val leadGene: Gene[Chromosome] = genes.maxBy(_.fitness)
+  lazy val chromosomeSize: Int = creatures.head.chromosome.length
+  lazy val averageFitness: Fitness = creatures.map(_.fitness).sum / size
+  lazy val leadCreature: Creature[Chromosome] = creatures.maxBy(_.fitness)
 }
 
 object Population {
-  def random[Chromosome](size: Int): Population[Chromosome] = {
-    val genes = Array.fill(size) {randomGene[Chromosome]()}
-    Population[Chromosome](genes, size)
+  def random[Chromosome](size: Int, sampleCreature: Creature[Chromosome]): Population[Chromosome] = {
+    val creatures = Array.fill(size) {sampleCreature.random()}
+    Population[Chromosome](creatures, size)
   }
-  def duplicatedGenePopulation[Chromosome](size: Int, gene: Gene[Chromosome]): Population[Chromosome] = {
-    val genes = Array.fill(size) {gene}
-    Population[Chromosome](genes, size)
-  }
-
-  // todo: create static random functino in gene somehow
-  private def randomGene[Chromosome](): Gene[Chromosome] = {
-    null
+  def duplicatedCreaturePopulation[Chromosome](size: Int, creature: Creature[Chromosome]): Population[Chromosome] = {
+    val creatures = Array.fill(size) {creature}
+    Population[Chromosome](creatures, size)
   }
 }
