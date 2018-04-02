@@ -3,8 +3,9 @@ package genetic
 import genetic.algorithms.crossover.Crossover
 import genetic.algorithms.mutation.Mutation
 import genetic.algorithms.selection.Selection
+import genetic.models.Aliases.FitnessFunction
 
-trait GeneticAlgorithmParameters {
+trait GeneticAlgorithmParameters[Chromosome] {
   def populationSize: Int
 
   def selectionAlgorithm: Selection
@@ -17,9 +18,9 @@ trait GeneticAlgorithmParameters {
 
   def mutationRate: Double
 
-  def chromosomeSize: Int
+  def fitnessFunction: FitnessFunction[Chromosome]
 
-  def parallelism: Int
+  def chromosomeSize: Int
 
   def stringify: String =
     s"Genetic Algorithm Parameters: " +

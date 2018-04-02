@@ -17,7 +17,7 @@ case class CreatureDouble(override val chromosome: Seq[Double],
 object CreatureDouble {
   def random(chromosomeSize: Int, fitnessFunction: FitnessFunction[Double]): CreatureDouble = {
     val rnd = new Random()
-    val chromosome = Array.fill(chromosomeSize){rnd.nextDouble()}
+    val chromosome = Seq.fill(chromosomeSize){rnd.nextDouble()}
     new CreatureDouble(chromosome, fitnessFunction)
   }
 }

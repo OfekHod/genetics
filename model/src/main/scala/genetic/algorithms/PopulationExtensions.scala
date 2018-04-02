@@ -1,5 +1,6 @@
 package genetic.algorithms
 
+import genetic.GeneticAlgorithmParameters
 import genetic.algorithms.crossover.Crossover
 import genetic.algorithms.mutation.Mutation
 import genetic.algorithms.selection.Selection
@@ -14,7 +15,7 @@ object PopulationExtensions {
     def crossover(selectionRate: Double)(implicit crossoverStrategy: Crossover): Population[Chromosome] = {
       crossoverStrategy.crossover(population, selectionRate)
     }
-    def mutate(mutationRate: Double)(implicit mutationStrategy: Mutation) = {
+    def mutate(mutationRate: Double)(implicit mutationStrategy: Mutation): Population[Chromosome] = {
       mutationStrategy.mutate(population, mutationRate)
     }
   }

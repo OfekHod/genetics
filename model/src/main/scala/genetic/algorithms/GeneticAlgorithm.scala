@@ -10,7 +10,7 @@ object GeneticAlgorithm {
   val logger = Logger.getLogger(this.getClass)
 
   def run[Chromosome](population: Population[Chromosome],
-                      generations: Int, params: GeneticAlgorithmParameters): Population[Chromosome] = {
+                      generations: Int, params: GeneticAlgorithmParameters[Chromosome]): Population[Chromosome] = {
     import common.extensions.TimeExtensions.DurationExtensions
     val startMilli = Instant.now()
     val lastOffspring = recursiveRun(population, generations, generations, params)
@@ -26,7 +26,7 @@ object GeneticAlgorithm {
   }
 
   private def recursiveRun[Chromosome](population: Population[Chromosome],
-                                       totalGenerations: Int, generationsLeft: Int, params: GeneticAlgorithmParameters): Population[Chromosome] = {
+                                       totalGenerations: Int, generationsLeft: Int, params: GeneticAlgorithmParameters[Chromosome]): Population[Chromosome] = {
     val currentGeneration = totalGenerations - generationsLeft + 1
     if (generationsLeft == 0) {
       population
@@ -44,7 +44,7 @@ object GeneticAlgorithm {
   }
 
   private def createOffspring[Chromosome](population: Population[Chromosome],
-                                          params: GeneticAlgorithmParameters): Population[Chromosome] = {
+                                          params: GeneticAlgorithmParameters[Chromosome]): Population[Chromosome] = {
     import PopulationExtensions.PopulationExtensions
 
     implicit val selectionStrategy = params.selectionAlgorithm
